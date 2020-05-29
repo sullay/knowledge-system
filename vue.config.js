@@ -4,7 +4,7 @@
  * @Author: sullay
  * @Date: 2020-05-29 15:10:37
  * @LastEditors: sullay
- * @LastEditTime: 2020-05-29 15:11:01
+ * @LastEditTime: 2020-05-29 15:30:07
  */
 const path = require('path')
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
   },
   // 公开路径
   publicPath: process.env.NODE_ENV === 'production'
-    ? './'
+    ? '/'
     : '/',
   // 输出文件目录
   outputDir: path.join(__dirname, './docs'),
