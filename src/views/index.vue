@@ -4,7 +4,7 @@
  * @Author: sullay
  * @Date: 2020-05-29 14:46:47
  * @LastEditors: sullay
- * @LastEditTime: 2020-05-29 17:19:03
+ * @LastEditTime: 2020-05-29 18:05:05
 -->
 <template>
   <div class="index">
@@ -23,4 +23,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.index{
+  max-width: 730px;
+  margin: 0 auto;
+}
 </style>
