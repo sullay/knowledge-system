@@ -1,0 +1,38 @@
+/*
+ * @Description:
+ * @Version: 1.0
+ * @Author: sullay
+ * @Date: 2020-05-29 17:04:54
+ * @LastEditors: sullay
+ * @LastEditTime: 2020-05-29 17:22:24
+ */
+const HyperDown = require('hyperdown')
+const Prism = require('prismjs')
+
+function markdownLoader (val) {
+  const parser = new HyperDown()
+  let html = parser.makeHtml(val)
+  html = html.replace(/(?<=<pre><code[^>]*?>)[\s\S]*?(?=<\/code><\/pre>)/gi, v => {
+    v = v.replace(/_&/g, ' ').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+    return Prism.highlight(v, Prism.languages.javascript)
+  })
+  html = html.replace(/&lt;slot[\s\S]*?&gt;&lt;\/slot&gt;/gi, v => {
+    v = v.replace(/_&/g, ' ').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+    return v
+  })
+  /**
+   * id解析方案
+   * markdown  ###(#item-1)标题
+   * html      <h3 id="item-1">标题</>
+   * @type {string}
+   */
+  html = html.replace(/>\(#[\s\S]*?\)/gi, v => {
+    const id = v.substr(3, v.length - 4)
+    return ` id="${id}">`
+  })
+  return (
+    `<template><div class="markdown">${html}</div></template>`
+  )
+}
+
+module.exports = markdownLoader

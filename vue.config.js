@@ -4,7 +4,7 @@
  * @Author: sullay
  * @Date: 2020-05-29 15:10:37
  * @LastEditors: sullay
- * @LastEditTime: 2020-05-29 15:41:11
+ * @LastEditTime: 2020-05-29 17:29:57
  */
 const path = require('path')
 module.exports = {
@@ -28,6 +28,14 @@ module.exports = {
   outputDir: path.join(__dirname, './docs'),
 
   configureWebpack: config => {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: [{
+        loader: 'vue-loader'
+      }, {
+        loader: require.resolve('./src/loader/markdown-loader.js')
+      }]
+    })
     if (process.env.NODE_ENV === 'production') {
       config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
       config.optimization.minimizer[0].options.terserOptions.compress.drop_debugger = true
