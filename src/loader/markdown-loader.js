@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Version: 1.0
- * @Author: sullay
- * @Date: 2020-05-29 17:04:54
- * @LastEditors: sullay
- * @LastEditTime: 2020-05-29 17:22:24
- */
 const HyperDown = require('hyperdown')
 const Prism = require('prismjs')
 
